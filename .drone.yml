@@ -1,0 +1,16 @@
+pipeline:
+  github-release:
+    image: container.zlab/dev-infra/tools
+    secrets:
+      - GITHUB_USER
+      - GITHUB_TOKEN
+    environment:
+      - USER=drone
+      - ZLAB_UNIT=corp
+      - GITHUB_USER=$$GITHUB_USER
+      - GITHUB_TOKEN=$$GITHUB_TOKEN
+      - GITHUB_ORG=t-hatokuoka
+    commands:
+      - make update-release
+    when:
+      event: tag
