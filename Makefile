@@ -8,4 +8,4 @@ TAG     ?= ${DRONE_TAG}
 
 .PHONY: update-release
 update-release:
-        scripts/update-release.sh ${GITHUB_ORG}/edit_test_release ${TAG} test-${VERSION}-${TAG} 
+	scripts/update-release.sh ${GITHUB_ORG}/edit_test_release ${TAG} test-${VERSION}-${TAG} 
