@@ -1,7 +1,7 @@
 pipeline:
   github-release:
     image: container.zlab/dev-infra/tools
-    secret:
+    secrets:
       - GITHUB_USER
       - GITHUB_TOKEN
     environment:
