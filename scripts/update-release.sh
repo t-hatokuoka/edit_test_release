@@ -24,7 +24,7 @@ fi
 if [ ${ZLAB_UNIT} == "corp" ]; then
   LIST="- Update ansible-infra-common v1.21.0"
 elif [ ${ZLAB_UNIT} == "yj" ]; then
-  LIST="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
+  LIST="- https://github.com/t-hatokuoka/${GITHUB_REPO}/releases/tag/${TAG}"
 else
   echo "unit required."
   exit 1
