@@ -5,7 +5,7 @@ pipeline:
       - GITHUB_TOKEN
     environment:
       - USER=drone
-      - ZLAB_UNIT=yj
+      - ZLAB_UNIT=corp
       - GITHUB_TOKEN=$$GITHUB_TOKEN
     commands:
       - make update-release

@@ -33,7 +33,7 @@ fi
 DESCRIPTION=$(cat <<EOS
 ## Change List
 
-${HOGE}
+${LIST}
 
 ## Artifacts
 
