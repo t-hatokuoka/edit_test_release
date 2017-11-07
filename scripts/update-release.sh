@@ -26,7 +26,7 @@ github-release edit \
     --repo ${GITHUB_REPO} \
     --tag  ${TAG} \
     --name ${TAG} \
-    --description $(cat <<EOS
+    --description @<(cat <<EOS
 
 - Update ansible-infra-common v1.21.0
 
