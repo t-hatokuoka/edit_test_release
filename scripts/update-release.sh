@@ -24,19 +24,15 @@ fi
 if [ ${ZLAB_UNIT} == "corp" ]; then
   HOGE="- Update ansible-infra-common v1.21.0"
 elif [ ${ZLAB_UNIT} == "yj" ]; then
-  HOGE="- https://github.com/zlabjp/infra-ubuntu/releases/tag/${TAG}"
+  HOGE="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
 else
   echo "unit required."
   exit 1
 fi
 
-echo "Updating release..."
-github-release edit \
-    --repo ${GITHUB_REPO} \
-    --tag  ${TAG} \
-    --name ${TAG} \
-    --description "## Change List
- 
+HUGA=$(cat <<EOS
+## Change List
+
 ${HOGE}
 
 ## Artifacts
@@ -44,4 +40,13 @@ ${HOGE}
 | イメージ名 |
 | --- |
 | ${IMAGE_NAME} |
+EOS
+)
+
+echo "Updating release..."
+github-release edit \
+    --repo ${GITHUB_REPO} \
+    --tag  ${TAG} \
+    --name ${TAG} \
+    --description "$HUGA"
 "
