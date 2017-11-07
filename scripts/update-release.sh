@@ -49,4 +49,3 @@ github-release edit \
     --tag  ${TAG} \
     --name ${TAG} \
     --description "$HUGA"
-"
