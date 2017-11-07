@@ -26,14 +26,10 @@ github-release edit \
     --repo ${GITHUB_REPO} \
     --tag  ${TAG} \
     --name ${TAG} \
-    --description @<(cat <<EOS
-
-- Update ansible-infra-common v1.21.0
-
-## Artifacts
-
-\| イメージ名 \|
-\| --- \|
-\| ${IMAGE_NAME} \|
-EOS
-)
+    --description "## Change List"
+    --description ""
+    --description "- Update ansible-infra-common v1.21.0"
+    --description ""
+    --description "| イメージ名 |"
+    --description "| --- |"
+    --description "| ${IMAGE_NAME} |"
