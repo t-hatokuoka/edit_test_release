@@ -17,7 +17,7 @@ fi
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
   curl -H "Accept: application/json" https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/releases?access_token=${GITHUB_TOKEN}
-  LIST=${cat <<EOS
+  LIST=$(cat <<EOS
 - test1
 - test2
 EOS
