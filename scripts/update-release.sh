@@ -22,15 +22,15 @@ if [ ! -n "${IMAGE_NAME}" ]; then
 fi
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
-  HOGE="- Update ansible-infra-common v1.21.0"
+  LIST="- Update ansible-infra-common v1.21.0"
 elif [ ${ZLAB_UNIT} == "yj" ]; then
-  HOGE="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
+  LIST="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
 else
   echo "unit required."
   exit 1
 fi
 
-HUGA=$(cat <<EOS
+DESCRIPTION=$(cat <<EOS
 ## Change List
 
 ${HOGE}
@@ -45,7 +45,8 @@ EOS
 
 echo "Updating release..."
 github-release edit \
+    --user "t-hatokuok"
     --repo ${GITHUB_REPO} \
     --tag  ${TAG} \
     --name ${TAG} \
-    --description "$HUGA"
+    --description "$DESCRIPTION"

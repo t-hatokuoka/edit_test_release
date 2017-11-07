@@ -2,12 +2,10 @@ pipeline:
   github-release:
     image: container.zlab/dev-infra/tools
     secrets:
-      - GITHUB_USER
       - GITHUB_TOKEN
     environment:
       - USER=drone
       - ZLAB_UNIT=yj
-      - GITHUB_USER=$$GITHUB_USER
       - GITHUB_TOKEN=$$GITHUB_TOKEN
     commands:
       - make update-release
