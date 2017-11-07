@@ -37,7 +37,7 @@ github-release edit \
     --name ${TAG} \
     --description "## Change List
  
-- Update ansible-infra-common v1.21.0
+${HOGE}
 
 ## Artifacts
 
