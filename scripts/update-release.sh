@@ -41,6 +41,8 @@ github-release edit \
 
 - Update ansible-infra-common v1.21.0
 
+## Artifacts
+
 | イメージ名 |
 | --- |
 | ${IMAGE_NAME} |
