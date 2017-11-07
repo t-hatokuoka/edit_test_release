@@ -32,8 +32,8 @@ github-release edit \
 
 ## Artifacts
 
-| イメージ名 |
-| --- |
-| ${IMAGE_NAME} |
+\| イメージ名 \|
+\| --- \|
+\| ${IMAGE_NAME} \|
 EOT
 )
