@@ -45,7 +45,7 @@ EOS
 
 echo "Updating release..."
 github-release edit \
-    --user "t-hatokuok"
+    --user "t-hatokuok" \
     --repo ${GITHUB_REPO} \
     --tag  ${TAG} \
     --name ${TAG} \
