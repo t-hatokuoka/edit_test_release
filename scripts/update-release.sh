@@ -16,7 +16,7 @@ if [ ! -n "${IMAGE_NAME}" ]; then
 fi
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
-  curl -H "Accept: application/json" https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/releases?access_token=${GITHUB_TOKEN}
+  curl -H "Accept: application/json" https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/releases?access_token=${GITHUB_TOKEN} | jq '.[1] | .created_at'
   LIST=$(cat <<EOS
 - test1
 - test2
@@ -32,7 +32,7 @@ fi
 DESCRIPTION=$(cat <<EOS
 ## Change List
 
-"$LIST"
+$LIST
 
 ## Artifacts
 
