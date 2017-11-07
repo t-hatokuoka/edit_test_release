@@ -21,15 +21,20 @@ if [ ! -n "${IMAGE_NAME}" ]; then
   exit 1
 fi
 
+HOGE=`cat << EOS
+## Change List
+
+- Update ansible-infra-common v1.21.0
+
+| イメージ名 |
+| --- |
+| ${IMAGE_NAME} |
+EOS
+`
+
 echo "Updating release..."
 github-release edit \
     --repo ${GITHUB_REPO} \
     --tag  ${TAG} \
     --name ${TAG} \
-    --description "## Change List" \
-    --description "" \
-    --description "- Update ansible-infra-common v1.21.0" \
-    --description "" \
-    --description "| イメージ名 |" \
-    --description "| --- |" \
-    --description "| ${IMAGE_NAME} |"
+    --description ${HOGE}
