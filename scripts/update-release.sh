@@ -21,16 +21,14 @@ if [ ! -n "${IMAGE_NAME}" ]; then
   exit 1
 fi
 
-HOGE=`cat << EOS
-## Change List
-
-- Update ansible-infra-common v1.21.0
-
-| イメージ名 |
-| --- |
-| ${IMAGE_NAME} |
-EOS
-`
+if [ ${ZLAB_UNIT} == "corp" ]; then
+  HOGE="- Update ansible-infra-common v1.21.0"
+elif [ ${ZLAB_UNIT} == "yj" ]; then
+  HOGE="- https://github.com/zlabjp/infra-ubuntu/releases/tag/${TAG}"
+else
+  echo "unit required."
+  exit 1
+fi
 
 echo "Updating release..."
 github-release edit \
@@ -38,7 +36,7 @@ github-release edit \
     --tag  ${TAG} \
     --name ${TAG} \
     --description "## Change List
-
+ 
 - Update ansible-infra-common v1.21.0
 
 ## Artifacts

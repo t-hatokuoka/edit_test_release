@@ -1,9 +1,14 @@
 pipeline:
   github-release:
     image: container.zlab/dev-infra/tools
+    secret:
+      - GITHUB_USER
+      - GITHUB_TOKEN
     environment:
       - USER=drone
       - ZLAB_UNIT=corp
+      - GITHUB_USER=$$GITHUB_USER
+      - GITHUB_TOKEN=$$GITHUB_TOKEN
     commands:
       - make update-release
     when:
