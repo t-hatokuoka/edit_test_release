@@ -37,4 +37,11 @@ github-release edit \
     --repo ${GITHUB_REPO} \
     --tag  ${TAG} \
     --name ${TAG} \
-    --description ${HOGE}
+    --description "## Change List
+
+- Update ansible-infra-common v1.21.0
+
+| イメージ名 |
+| --- |
+| ${IMAGE_NAME} |
+"
