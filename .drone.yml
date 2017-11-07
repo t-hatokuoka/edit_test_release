@@ -6,7 +6,7 @@ pipeline:
       - GITHUB_TOKEN
     environment:
       - USER=drone
-      - ZLAB_UNIT=corp
+      - ZLAB_UNIT=yj
       - GITHUB_USER=$$GITHUB_USER
       - GITHUB_TOKEN=$$GITHUB_TOKEN
     commands:
