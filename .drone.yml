@@ -6,7 +6,9 @@ pipeline:
     environment:
       - USER=drone
       - ZLAB_UNIT=corp
+      - GITHUB_USER=t-hatokuoka
       - GITHUB_TOKEN=$$GITHUB_TOKEN
+      - GITHUB_REPO=edit_test_release
     commands:
       - make update-release
     when:
