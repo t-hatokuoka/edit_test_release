@@ -1,9 +1,6 @@
 pipeline:
   github-release:
     image: container.zlab/dev-infra/tools
-    secrets:
-      - GITHUB_USER
-      - GITHUB_TOKEN
     environment:
       - USER=drone
       - ZLAB_UNIT=corp
