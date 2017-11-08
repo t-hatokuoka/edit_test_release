@@ -16,6 +16,7 @@ if [ ! -n "${IMAGE_NAME}" ]; then
 fi
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
+  git log v0.0.30..v0.0.31
   curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/pulls?state=closed | jq '.[] | select(.merged_at != null)' | grep tag
   LIST=$(cat <<EOS
 - test1
