@@ -15,6 +15,8 @@ if [ ! -n "${IMAGE_NAME}" ]; then
   exit 1
 fi
 
+PR_LIST=
+
 if [ ${ZLAB_UNIT} == "corp" ]; then
   PREV_TAG=(`curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/releases | jq -r '.[1] | .tag_name'`)
   DIFF_COMMITS=(`curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/compare/${PREV_TAG}...master | jq -r '.commits[].sha'`)
