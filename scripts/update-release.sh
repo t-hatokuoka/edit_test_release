@@ -16,7 +16,7 @@ if [ ! -n "${IMAGE_NAME}" ]; then
 fi
 
 PR_LIST=
-RELEASE_COMMAND?=edit
+RELEASE_COMMAND=edit
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
   PREV_TAG=(`curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/releases | jq -r '.[1] | .tag_name'`)
