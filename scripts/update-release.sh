@@ -31,6 +31,7 @@ $PR_LIST
 $PR_TITLE
 EOS
 )
+    fi
   done
 elif [ ${ZLAB_UNIT} == "yj" ]; then
   PR_LIST="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
