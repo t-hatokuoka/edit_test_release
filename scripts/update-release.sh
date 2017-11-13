@@ -16,6 +16,7 @@ if [ ! -n "${IMAGE_NAME}" ]; then
 fi
 
 PR_LIST=
+RELEASE_COMMAND?=edit
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
   PREV_TAG=(`curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/releases | jq -r '.[1] | .tag_name'`)
@@ -37,6 +38,7 @@ EOS
   done
 elif [ ${ZLAB_UNIT} == "yj" ]; then
   PR_LIST="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
+  RELEASE_COMMAND=release
 else
   echo "unit required."
   exit 1
@@ -56,7 +58,7 @@ EOS
 )
 
 echo "Updating release..."
-github-release edit \
+github-release ${RELEASE_COMMAND} \
     --tag  ${TAG} \
     --name ${TAG} \
     --description "$DESCRIPTION"
