@@ -5,7 +5,7 @@ pipeline:
       - GITHUB_TOKEN
     environment:
       - USER=drone
-      - ZLAB_UNIT=corp
+      - ZLAB_UNIT=yj
       - GITHUB_USER=t-hatokuoka
       - GITHUB_TOKEN=$$GITHUB_TOKEN
       - GITHUB_REPO=edit_test_release
