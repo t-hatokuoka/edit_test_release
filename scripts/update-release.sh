@@ -19,23 +19,28 @@ PR_LIST=
 RELEASE_COMMAND=edit
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
-  PREV_TAG=(`curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/releases | jq -r '.[1] | .tag_name'`)
-  DIFF_COMMITS=(`curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/compare/${PREV_TAG}...master | jq -r '.commits[].sha'`)
-  PULLS=`curl -H "Accept: application/json" https://ghproxy.corp.zlab.co.jp/api/repos/${GITHUB_USER}/${GITHUB_REPO}/pulls?state=closed`
+  DIFF_TAGS=
 
-  for commit in ${DIFF_COMMITS[@]}
-  do
-    PR_NUMBER=`echo ${PULLS} | jq -r --arg sha ${commit} '.[] | select(.merge_commit_sha == $sha) | .number'`
-    if [ ! -z ${PR_NUMBER} ]; then
-      PR_TITLE="- `echo ${PULLS} | jq -r --arg sha ${commit} '.[] | select(.merge_commit_sha == $sha) | .title'` #${PR_NUMBER}"
+  TWO_TAGS=(`git tag --sort=-v:refname | head -n 2`)
 
-      PR_LIST=$(cat <<EOS
-$PR_LIST
-$PR_TITLE
+  if [ -z ${TWO_TAGS[0]} ]; then
+    echo "Failed to get tags."
+    exit 1
+  fi
+
+  if [ ! -z ${TWO_TAGS[1]} ]; then
+    DIFF_TAGS="${TWO_TAGS[1]}..${TWO_TAGS[0]}"
+  fi
+
+  PR_LIST=$(cat <<EOS
+`git log --merges --reverse ${DIFF_TAGS} --pretty=format:"- %b %s"`
 EOS
 )
-    fi
-  done
+
+  if [ -z "${PR_LIST}" ]; then
+    echo "Failed to get pull request list."
+    exit 1
+  fi
 elif [ ${ZLAB_UNIT} == "yj" ]; then
   PR_LIST="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
   RELEASE_COMMAND=release
