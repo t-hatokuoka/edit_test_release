@@ -35,7 +35,7 @@ if [ ${ZLAB_UNIT} == "corp" ]; then
   fi
 
   PR_LIST=$(cat <<EOS
-`git log --merges --reverse ${DIFF_TAGS} --pretty=format:"%b %s" | sed -e 's/^\(.*\)Merge pull request \(#[0-9]*\).*$/\1\2/'`
+`git log --merges --reverse ${DIFF_TAGS} --pretty=format:"- %b %s" | sed -e 's/^\(.*\)Merge pull request \(#[0-9]*\).*$/\1\2/'`
 EOS
 )
 
