@@ -19,10 +19,6 @@ PR_LIST=
 RELEASE_COMMAND=edit
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
-  git init
-  git remote add origin https://github.com/${GITHUB_USER}/${GITHUB_REPO}.git
-  git fetch
-
   DIFF_TAGS="--all"
 
   TWO_TAGS=(`git for-each-ref --sort=-committerdate --format '%(refname:short)' refs/tags | head -n 2`)
