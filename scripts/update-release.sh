@@ -19,11 +19,13 @@ PR_LIST=
 RELEASE_COMMAND=edit
 
 if [ ${ZLAB_UNIT} == "corp" ]; then
+  git fetch
+
   DIFF_TAGS="--all"
 
   TWO_TAGS=(`git for-each-ref --sort=-committerdate --format '%(refname:short)' refs/tags | head -n 2`)
 
-  if [ -z ${TWO_TAGS} ]; then
+  if [ -z ${TWO_TAGS[0]} ]; then
     echo "Failed to get tags."
     exit 1
   fi
