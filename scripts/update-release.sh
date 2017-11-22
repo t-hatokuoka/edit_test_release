@@ -18,7 +18,7 @@ fi
 PR_LIST=
 RELEASE_COMMAND=edit
 
-if [ ${ZLAB_UNIT} == "corp" ]; then
+if [ "${ZLAB_UNIT}" == "corp" ]; then
   git fetch
 
   DIFF_TAGS="--all"
@@ -35,7 +35,7 @@ if [ ${ZLAB_UNIT} == "corp" ]; then
   fi
 
   PR_LIST=$(cat <<EOS
-`git log --merges --reverse ${DIFF_TAGS} --pretty=format:"- %b %s" | sed -e 's/^\(.*\)Merge pull request \(#[0-9]*\).*$/\1\2/'`
+`git log --merges --reverse --grep="Merge branch 'master'" --invert-grep ${DIFF_TAGS} --pretty=format:"- %b %s" | sed -e 's/^\(.*\)Merge pull request \(#[0-9]*\).*$/\1\2/' | awk 'NR>1&&/^- /{print ""}{printf $0}END{print ""}'`
 EOS
 )
 
@@ -43,11 +43,11 @@ EOS
     echo "Failed to get pull request list."
     exit 1
   fi
-elif [ ${ZLAB_UNIT} == "yj" ]; then
-  PR_LIST="- https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${TAG}"
+elif [ "${ZLAB_UNIT}" == "yj" ]; then
+  PR_LIST="- https://github.com/zlabjp/${GITHUB_REPO}/releases/tag/${TAG}"
   RELEASE_COMMAND=release
 else
-  echo "unit required."
+  echo "Unit is unset or invalid value."
   exit 1
 fi
 
