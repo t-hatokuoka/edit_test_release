@@ -25,12 +25,12 @@ if [ "${ZLAB_UNIT}" == "corp" ]; then
 
   TWO_TAGS=(`git for-each-ref --sort=-committerdate --format '%(refname:short)' refs/tags | head -n 2`)
 
-  if [ -z ${TWO_TAGS[0]} ]; then
+  if [ -z "${TWO_TAGS[0]}" ]; then
     echo "Failed to get tags."
     exit 1
   fi
 
-  if [ ! -z ${TWO_TAGS[1]} ]; then
+  if [ ! -z "${TWO_TAGS[1]}" ]; then
     DIFF_TAGS="${TWO_TAGS[1]}..${TWO_TAGS[0]}"
   fi
 
