@@ -64,9 +64,10 @@ $PR_LIST
 EOS
 )
 
-echo "Displaying set value"
+echo "Displaying set value..."
 echo "GITHUB_REPO=${GITHUB_REPO}, GITHUB_USER=${GITHUB_USER}, RELEASE_COMMAND=${RELEASE_COMMAND}, TAG=${TAG}"
-echo "${DESCRIPTION}"
+echo "DESCRIPTION=
+${DESCRIPTION}"
 
 echo "Updating release..."
 github-release ${RELEASE_COMMAND} \
