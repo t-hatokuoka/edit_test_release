@@ -71,6 +71,6 @@ ${DESCRIPTION}"
 
 echo "Updating release..."
 github-release ${RELEASE_COMMAND} \
-    --tag  v0.0.58 \
+    --tag  ${TAG} \
     --name ${TAG} \
     --description "${DESCRIPTION}"
