@@ -69,6 +69,10 @@ echo "GITHUB_REPO=${GITHUB_REPO}, GITHUB_USER=${GITHUB_USER}, RELEASE_COMMAND=${
 echo "DESCRIPTION=
 ${DESCRIPTION}"
 
+echo "Displaying release page info..."
+github-release info \
+    --tag ${TAG}
+
 echo "Updating release..."
 github-release ${RELEASE_COMMAND} \
     --tag  ${TAG} \
