@@ -1,3 +1,3 @@
 [submodule "terraform/modules"]
 	path = terraform/modules
-	url = https://github.com/zlabjp/infra-terraform-modules.git
+	url = git@github.com:zlabjp/infra-terraform-modules.git
