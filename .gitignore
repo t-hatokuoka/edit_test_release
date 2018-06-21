@@ -1,0 +1,5 @@
+.vagrant
+.terraform
+ansible/*.retry
+terraform/id_rsa*
+infra-init/

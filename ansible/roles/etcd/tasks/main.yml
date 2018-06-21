@@ -1,0 +1,11 @@
+- name: disable consul
+  systemd:
+    name: consul
+    state: stopped
+    enabled: no
+    daemon_reload: yes
+
+- name: remove consul.hcl
+  file:
+    path: /etc/infra-init/config/consul.hcl
+    state: absent

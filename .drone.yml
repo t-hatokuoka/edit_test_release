@@ -1,15 +1,57 @@
 pipeline:
-  github-release:
-    image: container.zlab/dev-infra/tools
-    secrets:
-      - GITHUB_TOKEN
-    environment:
-      - USER=drone
-      - ZLAB_UNIT=corp
-      - GITHUB_USER=t-hatokuok
-      - GITHUB_TOKEN=$$GITHUB_TOKEN
-      - GITHUB_REPO=edit_test_release
+  syntax-check:
+    image: container.zlab/dev-infra/tools:v1.11.0
     commands:
-      - make update-release
+      - make check
+    when:
+      event: pull_request
+
+  build:
+    image: container.zlab/dev-infra/tools:v1.11.0
+    secrets:
+      - os_auth_url
+      - os_tenant_name
+      - os_username
+      - os_password
+      - os_domain_name
+      - os_identity_api_version
+    commands:
+      - make validate
+      - make image
+      - make compress
+      - make prune
+    when:
+      branch: [master, test]
+      event: push
+
+  test:
+    image: container.zlab/dev-infra/tools:v1.11.0
+    secrets:
+      - os_auth_url
+      - os_project_name
+      - os_username
+      - os_password
+      - os_domain_name
+      - google_credentials
+      - ci_infra_config
+    commands:
+      - mkdir -p infra-init/ci
+      - echo "$${CI_INFRA_CONFIG}" > infra-init/ci/config.env
+      - make test
+    when:
+      branch: [master]
+      event: push
+
+  promote:
+    image: container.zlab/dev-infra/tools:v1.11.0
+    secrets:
+      - os_auth_url
+      - os_project_name
+      - os_username
+      - os_password
+      - os_domain_name
+      - os_identity_api_version
+    commands:
+      - make promote
     when:
       event: tag

@@ -1,0 +1,28 @@
+{
+  "variables": {
+    "source_image_name": "ubuntu-16.04-v1.0.0",
+    "image_name": "test-hatokuoka"
+  },
+  "builders": [
+    {
+      "type": "openstack",
+      "ssh_username": "ubuntu",
+      "source_image_name": "{{ user `source_image_name` }}",
+      "image_name": "{{ user `image_name` }}",
+      "flavor": "m1.small",
+      "networks": ["ae509c25-cb4e-47c4-91c9-8e4f805c236e"]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "ansible/node.yml"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo /usr/local/bin/image-cleanup"
+      ]
+    }
+  ]
+}
